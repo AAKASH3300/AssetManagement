@@ -14,17 +14,33 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class EmployeeImpl implements EmployeeService {
 
-    static Logger log = LoggerFactory.getLogger(EmployeeService.class);
+    static Logger log = LoggerFactory.getLogger(EmployeeImpl.class);
     @Autowired
     EmployeeRepository employeeRepository;
+
+
+    private static final String PREFIX = "emp_";
+    private static int counter = 1; // Starting number
+
+    private String generateEmployeeCode() {
+        String employeeCode = PREFIX + counter;
+        counter++;
+        return employeeCode;
+    }
+
     @Override
     public EmployeeDTO add(EmployeeDTO employeeModel) {
 
         Employee employee = EmployeeMapper.convertToEntity(employeeModel);
 
+        String employeeCode = generateEmployeeCode();
+        employee.setEmpCode(employeeCode);
+        employee.setCreatedBy(employeeCode);
+        employee.setLastUpdatedBy(employeeCode);
 
         log.info("customer details being saved :  {}", employee);
         employeeRepository.save(employee);
@@ -40,8 +56,8 @@ public class EmployeeImpl implements EmployeeService {
 
         List<EmployeeDTO> customerModels = new ArrayList<>();
 
-        if(employees.isEmpty()) throw new NoDataPresentException("No Employee records found ..");
-        for(Employee employee: employees){
+        if (employees.isEmpty()) throw new NoDataPresentException("No Employee records found ..");
+        for (Employee employee : employees) {
             customerModels.add(EmployeeMapper.convertToModel(employee));
         }
 

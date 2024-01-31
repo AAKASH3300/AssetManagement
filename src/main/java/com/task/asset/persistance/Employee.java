@@ -33,9 +33,9 @@ public class Employee {
     @Column(name = "status")
     private Status status;
     @Column(name = "createdBy")
-    private int createdBy;
+    private String createdBy;
     @Column(name = "lastUpdatedBy")
-    private int lastUpdatedBy;
+    private String lastUpdatedBy;
     @Column(name = "createdDate")
     @CreationTimestamp
     private Date createdDate;
@@ -106,6 +106,7 @@ public class Employee {
     public void setStatus(Status status) {
         this.status = status;
     }
+
     public String getCreatedBy() {
         return createdBy;
     }

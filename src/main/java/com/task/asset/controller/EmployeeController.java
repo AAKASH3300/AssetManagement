@@ -5,6 +5,7 @@ import com.task.asset.exception.NoDataPresentException;
 import com.task.asset.persistance.dto.EmployeeDTO;
 import com.task.asset.service.EmployeeService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/employee")
-@SecurityRequirement(name="bearerAuth")
+@SecurityRequirement(name = "bearerAuth")
 public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
 
     @PostMapping("add")
-    public ResponseEntity<EmployeeDTO> registerEmployee(@RequestBody EmployeeDTO employee) {
+    public ResponseEntity<EmployeeDTO> registerEmployee(@Valid @RequestBody EmployeeDTO employee) throws CommonException{
 
         employeeService.add(employee);
 
