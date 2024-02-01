@@ -1,4 +1,4 @@
-package com.task.asset.commonServices;
+package com.task.asset.commonservices;
 
 public class EmployeeCodeGeneration {
     private static final String PREFIX = "emp_";
