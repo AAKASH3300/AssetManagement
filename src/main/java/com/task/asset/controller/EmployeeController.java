@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/v1/employee")
 @SecurityRequirement(name = "bearerAuth")
 public class EmployeeController {
@@ -22,7 +23,7 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @PostMapping("add")
-    public ResponseEntity<EmployeeDTO> registerEmployee(@Valid @RequestBody EmployeeDTO employee) throws CommonException{
+    public ResponseEntity<EmployeeDTO> registerEmployee(@Valid @RequestBody EmployeeDTO employee) {
 
         employeeService.add(employee);
 

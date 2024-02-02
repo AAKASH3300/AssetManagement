@@ -28,8 +28,8 @@ public class Employee {
     private String email;
     @Column(name = "phone")
     private String phone;
-    @Column(name = "password")
-    private String password;
+//    @Column(name = "password")
+//    private String password;
     @Column(name = "status")
     private Status status;
     @Column(name = "createdBy")
@@ -91,13 +91,13 @@ public class Employee {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 
     public Status getStatus() {
         return status;

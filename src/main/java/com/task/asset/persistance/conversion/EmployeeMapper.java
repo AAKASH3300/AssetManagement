@@ -15,7 +15,7 @@ public class EmployeeMapper {
         employee.setLastname(employeeModel.getLastname());
         employee.setEmail(employeeModel.getEmail());
         employee.setPhone(employeeModel.getPhone());
-        employee.setPassword(employeeModel.getPassword());
+//        employee.setPassword(employeeModel.getPassword());
         employee.setStatus(Status.ACTIVE);
         employee.setCreatedDate(employeeModel.getCreatedDate());
         employee.setLastUpdatedDate(employeeModel.getLastUpdatedDate());
@@ -32,7 +32,7 @@ public class EmployeeMapper {
         employeeModel.setLastname(employee.getLastname());
         employeeModel.setEmail(employee.getEmail());
         employeeModel.setPhone(employee.getPhone());
-        employeeModel.setPassword(employee.getPassword());
+//        employeeModel.setPassword(employee.getPassword());
         employeeModel.setCreatedBy(employee.getCreatedBy());
         employeeModel.setLastUpdatedBy(employee.getLastUpdatedBy());
         employeeModel.setCreatedDate(employee.getCreatedDate());

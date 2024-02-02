@@ -15,11 +15,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class AssetApplicationTests {
 
-    @Autowired
-    EmployeeService employeeService;
 
-    @MockBean
-    EmployeeRepository employeeRepository;
 
 
 
