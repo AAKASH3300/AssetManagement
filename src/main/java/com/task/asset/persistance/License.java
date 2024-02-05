@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Table(name = "tbl_license")
 public class License {
 
@@ -78,6 +78,8 @@ public class License {
     @Column(name = "lastUpdatedDate")
     private Timestamp lastUpdatedDate;
 
+//    @ManyToOne
+//    Vendor vendor;
     public License(){
         generateLicCode();
     }
