@@ -22,27 +22,15 @@ public class EmployeeImpl implements EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
-
-    private static final String PREFIX = "emp_";
-    private static int counter = 1; // Starting number
-
-    private String generateEmployeeCode() {
-        String employeeCode = PREFIX + counter;
-        counter++;
-        return employeeCode;
-    }
-
     @Override
     public EmployeeDTO add(EmployeeDTO employeeModel) {
 
         Employee employee = EmployeeMapper.convertToEntity(employeeModel);
 
-        String employeeCode = generateEmployeeCode();
-        employee.setEmpCode(employeeCode);
-        employee.setCreatedBy(employeeCode);
-        employee.setLastUpdatedBy(employeeCode);
-
         log.info("customer details being saved :  {}", employee);
+        employee=employeeRepository.save(employee);
+        employee.setCreatedBy(employeeModel.getEmpCode());
+        employee.setLastUpdatedBy(employeeModel.getEmpCode());
         employeeRepository.save(employee);
         employeeModel = EmployeeMapper.convertToModel(employee);
 
@@ -50,7 +38,7 @@ public class EmployeeImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDTO> viewEmployee() throws CommonException, NoDataPresentException {
+    public List<EmployeeDTO> viewEmployee() throws NoDataPresentException {
 
         List<Employee> employees = employeeRepository.findAll();
 

@@ -5,9 +5,10 @@ import jakarta.persistence.*;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+    import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
+import java.util.concurrent.atomic.AtomicLong;
 
 
 @Entity
@@ -19,6 +20,7 @@ public class Employee {
     @Column(name = "id")
     private int id;
     @Column(name = "empCode")
+    private static final AtomicLong empCodeSequence = new AtomicLong(100); // Initial value for the sequence
     private String empCode;
     @Column(name = "firstname")
     private String firstname;
@@ -28,8 +30,6 @@ public class Employee {
     private String email;
     @Column(name = "phone")
     private String phone;
-//    @Column(name = "password")
-//    private String password;
     @Column(name = "status")
     private Status status;
     @Column(name = "createdBy")
@@ -43,6 +43,9 @@ public class Employee {
     @UpdateTimestamp
     private Date lastUpdatedDate;
 
+    public Employee(){
+        generateEmpCode();
+    }
     public int getId() {
         return id;
     }
@@ -91,14 +94,6 @@ public class Employee {
         this.phone = phone;
     }
 
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
-
     public Status getStatus() {
         return status;
     }
@@ -139,6 +134,10 @@ public class Employee {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
+    private void generateEmpCode() {
+        // Logic to generate empCode using a sequence
+        this.empCode = "emp_" + empCodeSequence.getAndIncrement();
+    }
 
 
 }

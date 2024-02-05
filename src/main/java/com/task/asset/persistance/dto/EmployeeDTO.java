@@ -5,11 +5,14 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
-
+@Component
+@Data
 @Getter
 @Setter
 public class EmployeeDTO {
@@ -29,9 +32,6 @@ public class EmployeeDTO {
     @NotBlank(message = "Please enter your Phone number !")
     @Pattern(regexp = "^\\d{10}$", message = "Inappropriate phone number!")
     private String phone;
-//    @NotBlank(message = "Please enter password!")
-//    @Size(min = 8, max = 20, message = "Your password size should be between 8 and 20!")
-////    private String password;
     private Status status;
     private String createdBy;
     private String lastUpdatedBy;

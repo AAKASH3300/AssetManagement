@@ -22,7 +22,7 @@ public class VendorImpl implements VendorService {
     @Autowired
     VendorRepository vendorRepository;
 
-    public VendorDTO add(VendorDTO vendorModel) {
+    public VendorDTO addVendor(VendorDTO vendorModel) {
 
         Vendor vendor = VendorMapper.convertToEntity(vendorModel);
 
@@ -33,11 +33,6 @@ public class VendorImpl implements VendorService {
 
 
         return vendorModel;
-    }
-
-    @Override
-    public VendorDTO addVendor(VendorDTO vendorModel) {
-        return null;
     }
 
     @Override

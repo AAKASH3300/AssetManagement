@@ -10,13 +10,13 @@ public class EmployeeMapper {
 
         Employee employee = new Employee();
 
-
+        employee.setId(employeeModel.getId());
+        employee.setEmpCode(employee.getEmpCode());
         employee.setFirstname(employeeModel.getFirstname());
         employee.setLastname(employeeModel.getLastname());
         employee.setEmail(employeeModel.getEmail());
         employee.setPhone(employeeModel.getPhone());
-//        employee.setPassword(employeeModel.getPassword());
-        employee.setStatus(Status.ACTIVE);
+        employee.setStatus(Status.valueOf(String.valueOf(Status.ACTIVE)));
         employee.setCreatedDate(employeeModel.getCreatedDate());
         employee.setLastUpdatedDate(employeeModel.getLastUpdatedDate());
 
@@ -27,14 +27,15 @@ public class EmployeeMapper {
 
         EmployeeDTO employeeModel = new EmployeeDTO();
 
+        employeeModel.setId(employee.getId());
         employeeModel.setEmpCode(employee.getEmpCode());
         employeeModel.setFirstname(employee.getFirstname());
         employeeModel.setLastname(employee.getLastname());
         employeeModel.setEmail(employee.getEmail());
         employeeModel.setPhone(employee.getPhone());
-//        employeeModel.setPassword(employee.getPassword());
-        employeeModel.setCreatedBy(employee.getCreatedBy());
-        employeeModel.setLastUpdatedBy(employee.getLastUpdatedBy());
+        employeeModel.setStatus(Status.valueOf(String.valueOf(employee.getStatus())));
+        employeeModel.setCreatedBy(employee.getEmpCode());
+        employeeModel.setLastUpdatedBy(employee.getEmpCode());
         employeeModel.setCreatedDate(employee.getCreatedDate());
         employeeModel.setLastUpdatedDate(employee.getLastUpdatedDate());
 

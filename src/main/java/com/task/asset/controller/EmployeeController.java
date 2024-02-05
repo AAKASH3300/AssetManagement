@@ -22,6 +22,9 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
+    public EmployeeController(EmployeeService employeeService) {
+    }
+
     @PostMapping("add")
     public ResponseEntity<EmployeeDTO> registerEmployee(@Valid @RequestBody EmployeeDTO employee) {
 
