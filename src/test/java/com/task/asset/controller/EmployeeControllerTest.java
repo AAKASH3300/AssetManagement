@@ -23,13 +23,13 @@ class EmployeeControllerTest {
 
     @Test
     void testRegisterEmployee() {
-        // Given
+
         EmployeeDTO employeeDTO = new EmployeeDTO();
 
-        // When
+
         ResponseEntity<EmployeeDTO> responseEntity = employeeController.registerEmployee(employeeDTO);
 
-        // Then
+
         verify(employeeService, times(1)).add(any(EmployeeDTO.class));
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(employeeDTO, responseEntity.getBody());

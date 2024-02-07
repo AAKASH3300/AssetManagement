@@ -22,12 +22,11 @@ import java.util.concurrent.atomic.AtomicLong;
 @Table(name = "tbl_license")
 public class License {
 
+    @Column(name = "licCode")
+    private static final AtomicLong licCodeSequence = new AtomicLong(100); // Initial value for the sequence
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-
-    @Column(name = "licCode")
-    private static final AtomicLong licCodeSequence = new AtomicLong(100); // Initial value for the sequence
     private String licCode;
 
     @Column(name = "licType")
@@ -78,11 +77,12 @@ public class License {
     @Column(name = "lastUpdatedDate")
     private Timestamp lastUpdatedDate;
 
-//    @ManyToOne
+    //    @ManyToOne
 //    Vendor vendor;
-    public License(){
+    public License() {
         generateLicCode();
     }
+
     private void generateLicCode() {
         this.licCode = "lic_" + licCodeSequence.getAndIncrement();
     }
