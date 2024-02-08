@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
+
 @Component
 @Data
 @Getter
@@ -16,8 +17,10 @@ import java.sql.Timestamp;
 public class LicenseDTO {
     private Integer id;
 
-    @NotBlank
+
     @Size(max = 20)
+    @NotBlank(message = "Vendor code can not be empty ..")
+    @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "provide a valid vendor code")
     private String licCode;
 
     @NotBlank
@@ -27,7 +30,8 @@ public class LicenseDTO {
     //@Size(max = 500)
     //private String licImage;
 
-    @NotBlank
+    @NotBlank(message = "vendor name can not be empty ..")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "provide a valid vendor name")
     @Size(max = 50)
     private String licName;
 

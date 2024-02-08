@@ -16,6 +16,10 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class VendorDTO {
+
+    @NotBlank
+    Integer id;
+
     @NotBlank(message = "Vendor code can not be empty ..")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "provide a valid vendor code")
     String vendorCode;
