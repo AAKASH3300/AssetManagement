@@ -1,8 +1,8 @@
 package com.task.asset.persistance.dto;
 
-import com.task.asset.enums.Expiration;
-import com.task.asset.enums.Ownership;
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumExpiration;
+import com.task.asset.enums.EnumOwnership;
+import com.task.asset.enums.EnumStatus;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.Getter;
@@ -42,7 +42,7 @@ public class AccessoriesDTO {
     @NotBlank
     private String accDetails;
 
-    private Ownership ownership;
+    private EnumOwnership Ownership;
 
     @NotNull
     private Integer vendorId;
@@ -54,12 +54,12 @@ public class AccessoriesDTO {
     @Positive
     private Double purchaseCost;
 
-    private Expiration warranty;
+    private EnumExpiration warranty;
 
     @PositiveOrZero
     private Integer warrantyPeriod;
 
-    private Status status;
+    private EnumStatus status;
 
     @NotNull
     private Integer createdBy;

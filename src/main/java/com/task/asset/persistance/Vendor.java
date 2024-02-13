@@ -1,6 +1,6 @@
 package com.task.asset.persistance;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -30,7 +30,7 @@ public class Vendor {
     @Column(name = "notes")
     String notes;
     @Column(name = "status")
-    Status status;
+    EnumStatus status;
     @Column(name = "created_by")
     int createdBy;
     @Column(name = "last_updated_by")

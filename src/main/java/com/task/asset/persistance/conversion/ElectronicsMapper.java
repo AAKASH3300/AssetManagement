@@ -1,60 +1,72 @@
 package com.task.asset.persistance.conversion;
 
-import com.task.asset.enums.Expiration;
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumExpiration;
+import com.task.asset.enums.EnumOwnership;
+import com.task.asset.enums.EnumStatus;
 import com.task.asset.persistance.Electronics;
+import com.task.asset.persistance.Employee;
+import com.task.asset.persistance.Vendor;
 import com.task.asset.persistance.dto.ElectronicsDTO;
+import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
+@Component
 public class ElectronicsMapper {
-    public static ElectronicsDTO convertToModel(Electronics electronics) {
+    public ElectronicsDTO convertToModel(Electronics electronics) {
         ElectronicsDTO model = new ElectronicsDTO();
         model.setId(electronics.getId());
         model.setEleCode(electronics.getEleCode());
-        model.setSubCategoryId(electronics.getSubCategoryId());
+//        model.setSubCategoryId(String.valueOf(electronics.getSubCategoryId().getId()));
         model.setEleName(electronics.getEleName());
         model.setEleBrand(electronics.getEleBrand());
         model.setSerialNo(electronics.getSerialNo());
         model.setEleDetails(electronics.getEleDetails());
         // model.setEleImage(electronics.getEleImage()); // Uncomment if needed
-        model.setOwnership(electronics.getOwnership());
-        model.setVendorId(electronics.getVendorId());
-        model.setPurchaseDate(electronics.getPurchaseDate());
-        model.setPurchaseCost(electronics.getPurchaseCost());
-        model.setWarranty(Expiration.valueOf(electronics.getWarranty().name()));
-        model.setWarrantyPeriod(electronics.getWarrantyPeriod());
-        model.setLastMaintenance(electronics.getLastMaintenance());
-        model.setNextMaintenance(electronics.getNextMaintenance());
-        model.setStatus(Status.valueOf(electronics.getStatus().name()));
+        model.setOwnership(String.valueOf(electronics.getOwnership()));
+        model.setVendorId(String.valueOf(electronics.getVendorId()));
+        model.setPurchaseDate(String.valueOf(electronics.getPurchaseDate()));
+        model.setPurchaseCost(String.valueOf(electronics.getPurchaseCost()));
+        model.setWarranty(String.valueOf(electronics.getWarranty()));
+        model.setWarrantyPeriod(String.valueOf(electronics.getWarrantyPeriod()));
+        model.setLastMaintenance(String.valueOf(electronics.getLastMaintenance()));
+        model.setNextMaintenance(String.valueOf(electronics.getNextMaintenance()));
+        model.setStatus(String.valueOf(electronics.getStatus()));
         model.setCreatedBy(electronics.getCreatedBy());
         model.setLastUpdatedBy(electronics.getLastUpdatedBy());
-        model.setCreatedDate(electronics.getCreatedDate());
-        model.setLastUpdatedDate(electronics.getLastUpdatedDate());
+        model.setCreatedDate(String.valueOf(electronics.getCreatedDate()));
+        model.setLastUpdatedDate(String.valueOf(electronics.getLastUpdatedDate()));
         return model;
     }
 
-    public static Electronics convertToelectronics(ElectronicsDTO model) {
+    public Electronics ModelToEntity(ElectronicsDTO model, Employee employee) {
         Electronics electronics = new Electronics();
-        electronics.setId(model.getId());
         electronics.setEleCode(model.getEleCode());
-        electronics.setSubCategoryId(model.getSubCategoryId());
+//        SubCategory subCategory = new SubCategory();
+//        subCategory.setId(Integer.valueOf(model.getSubCategoryId()));
+////        electronics.setSubCategoryId(subCategory);
         electronics.setEleName(model.getEleName());
         electronics.setEleBrand(model.getEleBrand());
         electronics.setSerialNo(model.getSerialNo());
         electronics.setEleDetails(model.getEleDetails());
-        // electronics.setEleImage(model.getEleImage()); // Uncomment if needed
-        electronics.setOwnership(model.getOwnership());
-        electronics.setVendorId(model.getVendorId());
-        electronics.setPurchaseDate(model.getPurchaseDate());
-        electronics.setPurchaseCost(model.getPurchaseCost());
-        electronics.setWarranty(Expiration.valueOf(model.getWarranty().name()));
-        electronics.setWarrantyPeriod(model.getWarrantyPeriod());
-        electronics.setLastMaintenance(model.getLastMaintenance());
-        electronics.setNextMaintenance(model.getNextMaintenance());
-        electronics.setStatus(Status.valueOf(model.getStatus().name()));
-        electronics.setCreatedBy(model.getCreatedBy());
-        electronics.setLastUpdatedBy(model.getLastUpdatedBy());
-        electronics.setCreatedDate(model.getCreatedDate());
-        electronics.setLastUpdatedDate(model.getLastUpdatedDate());
+//         electronics.setEleImage(model.getEleImage());
+        electronics.setOwnership(EnumOwnership.valueCheck(model.getOwnership()));
+        Vendor vendor = new Vendor();
+        vendor.setId(Integer.valueOf(model.getVendorId()));
+        electronics.setVendorId(vendor);
+        electronics.setEmpId(employee);
+        electronics.setPurchaseDate(Date.valueOf(model.getPurchaseDate()));
+        electronics.setPurchaseCost(Double.valueOf(model.getPurchaseCost()));
+        electronics.setWarranty(EnumExpiration.valueCheck(model.getWarranty()));
+        electronics.setWarrantyPeriod(Integer.valueOf(model.getWarrantyPeriod()));
+        electronics.setLastMaintenance(Date.valueOf(model.getLastMaintenance()));
+        electronics.setNextMaintenance(Date.valueOf(model.getNextMaintenance()));
+        electronics.setStatus(EnumStatus.ACTIVE);
+        electronics.setCreatedBy(employee.getFirstname());
+        electronics.setLastUpdatedBy(employee.getFirstname());
+        electronics.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+        electronics.setLastUpdatedDate(new Timestamp(System.currentTimeMillis()));
         return electronics;
     }
 }

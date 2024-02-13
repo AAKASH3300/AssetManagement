@@ -1,9 +1,11 @@
 package com.task.asset.persistance.conversion;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import com.task.asset.persistance.Consumables;
 import com.task.asset.persistance.dto.ConsumablesDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConsumablesMapper {
     public static ConsumablesDTO convertToModel(Consumables entity) {
         ConsumablesDTO model = new ConsumablesDTO();
@@ -21,7 +23,7 @@ public class ConsumablesMapper {
         model.setMinimumQty(entity.getMinimumQty());
         model.setNotifyTo(entity.getNotifyTo());
         model.setNotifyWhen(entity.getNotifyWhen());
-        model.setStatus(Status.valueOf(entity.getStatus().name()));
+        model.setStatus(EnumStatus.valueOf(entity.getStatus().name()));
         model.setCreatedBy(entity.getCreatedBy());
         model.setLastUpdatedBy(entity.getLastUpdatedBy());
         model.setCreatedDate(entity.getCreatedDate());
@@ -29,7 +31,7 @@ public class ConsumablesMapper {
         return model;
     }
 
-    public static Consumables convertToEntity(Consumables model) {
+    public static Consumables convertToEntity(ConsumablesDTO model) {
         Consumables entity = new Consumables();
         entity.setId(model.getId());
         entity.setCsCode(model.getCsCode());
@@ -45,7 +47,7 @@ public class ConsumablesMapper {
         entity.setMinimumQty(model.getMinimumQty());
         entity.setNotifyTo(model.getNotifyTo());
         entity.setNotifyWhen(model.getNotifyWhen());
-        entity.setStatus(Status.valueOf(model.getStatus().name()));
+        entity.setStatus(EnumStatus.valueOf(model.getStatus().name()));
         entity.setCreatedBy(model.getCreatedBy());
         entity.setLastUpdatedBy(model.getLastUpdatedBy());
         entity.setCreatedDate(model.getCreatedDate());

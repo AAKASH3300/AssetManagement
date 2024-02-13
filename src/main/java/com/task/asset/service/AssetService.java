@@ -1,6 +1,9 @@
 package com.task.asset.service;
 
+import com.task.asset.exception.CommonException;
+import com.task.asset.exception.NoDataPresentException;
 import com.task.asset.persistance.*;
+import com.task.asset.persistance.dto.*;
 
 
 import java.util.List;
@@ -10,27 +13,28 @@ public interface AssetService {
 
     //--------------------------Create--------------------------
 
-    Electronics createElectronics(Electronics electronics);
+    ElectronicsDTO createElectronics(ElectronicsDTO electronicModel);
 
-    Furnitures createFurnitures(Furnitures furnitures);
+    FurnituresDTO createFurnitures(FurnituresDTO furnitureModel);
 
-    Consumables createConsumables(Consumables consumables);
+    ConsumablesDTO createConsumables(ConsumablesDTO consumables);
 
-    Accessories createAccessories(Accessories accessories);
+    AccessoriesDTO createAccessories(AccessoriesDTO accessories);
 
-    License createLicense(License license);
+    LicenseDTO createLicense(LicenseDTO license);
+
 
     //--------------------------List--------------------------
 
-    List<Electronics> getAllElectronics();
+    List<ElectronicsDTO> getAllElectronics() throws NoDataPresentException, CommonException;
 
-    List<Furnitures> getAllFurnitures();
+    List<FurnituresDTO> getAllFurnitures()throws NoDataPresentException, CommonException;
 
-    List<Consumables> getAllConsumables();
+    List<ConsumablesDTO> getAllConsumables()throws NoDataPresentException, CommonException;
 
-    List<Accessories> getAllAccessories();
+    List<AccessoriesDTO> getAllAccessories()throws NoDataPresentException, CommonException;
 
-    List<License> getAllLicense();
+    List<LicenseDTO> getAllLicense()throws NoDataPresentException, CommonException;
 
     //--------------------------GetById--------------------------
 

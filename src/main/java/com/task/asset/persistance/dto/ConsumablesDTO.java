@@ -1,6 +1,6 @@
 package com.task.asset.persistance.dto;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -47,7 +47,7 @@ public class ConsumablesDTO {
 
     private String notifyWhen;
 
-    private Status status;
+    private EnumStatus status;
 
     private Integer createdBy;
 

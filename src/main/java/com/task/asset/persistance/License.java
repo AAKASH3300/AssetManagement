@@ -1,7 +1,7 @@
 package com.task.asset.persistance;
 
-import com.task.asset.enums.Expiration;
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumExpiration;
+import com.task.asset.enums.EnumStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -59,13 +59,13 @@ public class License {
     @Column(name = "purchaseCost")
     private Double purchaseCost;
     @Column(name = "expiration")
-    private Expiration expiration;
+    private EnumExpiration expiration;
     @Column(name = "expirationPeriod")
     private Integer expirationPeriod;
     @Column(name = "expirationAlert")
     private Integer expirationAlert;
     @Column(name = "status")
-    private Status status;
+    private EnumStatus status;
     @Column(name = " createdBy")
     private Integer createdBy;
     @Column(name = "lastUpdatedBy")

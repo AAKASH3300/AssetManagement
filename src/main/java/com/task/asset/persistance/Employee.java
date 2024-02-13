@@ -1,6 +1,6 @@
 package com.task.asset.persistance;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.persistence.*;
 
 import lombok.Data;
@@ -31,7 +31,7 @@ public class Employee {
     @Column(name = "phone")
     private String phone;
     @Column(name = "status")
-    private Status status;
+    private EnumStatus status;
     @Column(name = "createdBy")
     private String createdBy;
     @Column(name = "lastUpdatedBy")
@@ -94,11 +94,11 @@ public class Employee {
         this.phone = phone;
     }
 
-    public Status getStatus() {
+    public EnumStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(EnumStatus status) {
         this.status = status;
     }
 

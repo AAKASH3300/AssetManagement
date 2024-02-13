@@ -1,9 +1,11 @@
 package com.task.asset.persistance.conversion;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import com.task.asset.persistance.Furnitures;
 import com.task.asset.persistance.dto.FurnituresDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FurnitureMapper {
     public static FurnituresDTO convertToModel(Furnitures entity) {
         FurnituresDTO model = new FurnituresDTO();
@@ -17,7 +19,7 @@ public class FurnitureMapper {
         model.setPurchaseDate(entity.getPurchaseDate());
         model.setPurchaseCost(entity.getPurchaseCost());
         model.setPurchaseQty(entity.getPurchaseQty());
-        model.setStatus(Status.valueOf(entity.getStatus().name()));
+        model.setStatus(EnumStatus.valueOf(entity.getStatus().name()));
         model.setCreatedBy(entity.getCreatedBy());
         model.setLastUpdatedBy(entity.getLastUpdatedBy());
         model.setCreatedDate(entity.getCreatedDate());
@@ -37,7 +39,7 @@ public class FurnitureMapper {
         entity.setPurchaseDate(model.getPurchaseDate());
         entity.setPurchaseCost(model.getPurchaseCost());
         entity.setPurchaseQty(model.getPurchaseQty());
-        entity.setStatus(Status.valueOf(model.getStatus().name()));
+        entity.setStatus(EnumStatus.valueOf(model.getStatus().name()));
         entity.setCreatedBy(model.getCreatedBy());
         entity.setLastUpdatedBy(model.getLastUpdatedBy());
         entity.setCreatedDate(model.getCreatedDate());

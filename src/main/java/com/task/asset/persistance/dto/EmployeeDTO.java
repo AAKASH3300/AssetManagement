@@ -1,6 +1,6 @@
 package com.task.asset.persistance.dto;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -32,7 +32,7 @@ public class EmployeeDTO {
     @NotBlank(message = "Please enter your Phone number !")
     @Pattern(regexp = "^\\d{10}$", message = "Inappropriate phone number!")
     private String phone;
-    private Status status;
+    private EnumStatus status;
     private String createdBy;
     private String lastUpdatedBy;
     private Date createdDate;

@@ -1,6 +1,6 @@
 package com.task.asset.persistance.dto;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.Getter;
@@ -53,7 +53,7 @@ public class FurnituresDTO {
     private Double purchaseQty;
 
     @NotNull
-    private Status status;
+    private EnumStatus status;
 
     @NotNull
     private Integer createdBy;

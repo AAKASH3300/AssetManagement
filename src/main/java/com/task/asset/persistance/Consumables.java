@@ -1,6 +1,6 @@
 package com.task.asset.persistance;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -59,7 +59,7 @@ public class Consumables {
     private String notifyWhen;
 
     @Column(length = 10)
-    private Status status;
+    private EnumStatus status;
 
     @Column(name = "created_by")
     private Integer createdBy;

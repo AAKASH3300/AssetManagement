@@ -1,13 +1,15 @@
 package com.task.asset.persistance.conversion;
 
-import com.task.asset.enums.Expiration;
-import com.task.asset.enums.Ownership;
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumExpiration;
+import com.task.asset.enums.EnumOwnership;
+import com.task.asset.enums.EnumStatus;
 import com.task.asset.persistance.Accessories;
 import com.task.asset.persistance.dto.AccessoriesDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccessoryMapper {
-    public static AccessoriesDTO toModel(Accessories entity) {
+    public static AccessoriesDTO convertToModel(Accessories entity) {
         AccessoriesDTO model = new AccessoriesDTO();
         model.setId(entity.getId());
         model.setAccCode(entity.getAccCode());
@@ -17,13 +19,13 @@ public class AccessoryMapper {
         model.setSerialNo(entity.getSerialNo());
         model.setAccDetails(entity.getAccDetails());
         // model.setAccImage(entity.getAccImage()); // Uncomment if needed
-        model.setOwnership(Ownership.valueOf(entity.getOwnership().name()));
+        model.setOwnership(EnumOwnership.valueOf(entity.getOwnership().name()));
         model.setVendorId(entity.getVendorId());
         model.setPurchaseDate(entity.getPurchaseDate());
         model.setPurchaseCost(entity.getPurchaseCost());
-        model.setWarranty(Expiration.valueOf(entity.getWarranty().name()));
+        model.setWarranty(EnumExpiration.valueOf(entity.getWarranty().name()));
         model.setWarrantyPeriod(entity.getWarrantyPeriod());
-        model.setStatus(Status.valueOf(entity.getStatus().name()));
+        model.setStatus(EnumStatus.valueOf(entity.getStatus().name()));
         model.setCreatedBy(entity.getCreatedBy());
         model.setLastUpdatedBy(entity.getLastUpdatedBy());
         model.setCreatedDate(entity.getCreatedDate());
@@ -31,7 +33,7 @@ public class AccessoryMapper {
         return model;
     }
 
-    public static Accessories toEntity(AccessoriesDTO model) {
+    public static Accessories convertToEntity(AccessoriesDTO model) {
         Accessories entity = new Accessories();
         entity.setId(model.getId());
         entity.setAccCode(model.getAccCode());
@@ -41,13 +43,13 @@ public class AccessoryMapper {
         entity.setSerialNo(model.getSerialNo());
         entity.setAccDetails(model.getAccDetails());
         // entity.setAccImage(model.getAccImage()); // Uncomment if needed
-        entity.setOwnership(Ownership.valueOf(model.getOwnership().name()));
+        entity.setOwnership(EnumOwnership.valueOf(model.getOwnership().name()));
         entity.setVendorId(model.getVendorId());
         entity.setPurchaseDate(model.getPurchaseDate());
         entity.setPurchaseCost(model.getPurchaseCost());
-        entity.setWarranty(Expiration.valueOf(model.getWarranty().name()));
+        entity.setWarranty(EnumExpiration.valueOf(model.getWarranty().name()));
         entity.setWarrantyPeriod(model.getWarrantyPeriod());
-        entity.setStatus(Status.valueOf(model.getStatus().name()));
+        entity.setStatus(EnumStatus.valueOf(model.getStatus().name()));
         entity.setCreatedBy(model.getCreatedBy());
         entity.setLastUpdatedBy(model.getLastUpdatedBy());
         entity.setCreatedDate(model.getCreatedDate());

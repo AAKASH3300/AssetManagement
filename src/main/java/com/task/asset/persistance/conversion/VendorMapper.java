@@ -1,9 +1,11 @@
 package com.task.asset.persistance.conversion;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import com.task.asset.persistance.Vendor;
 import com.task.asset.persistance.dto.VendorDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class VendorMapper {
     public static Vendor convertToEntity(VendorDTO vendorModel) {
 
@@ -13,7 +15,7 @@ public class VendorMapper {
         vendor.setVendorName(vendorModel.getVendorName());
         vendor.setEmail(vendorModel.getEmail());
         vendor.setPhone(vendorModel.getPhone());
-        vendor.setStatus(Status.ACTIVE);
+        vendor.setStatus(EnumStatus.ACTIVE);
         vendor.setCreatedDate(vendorModel.getCreatedDate());
         vendor.setLastUpdatedDate(vendorModel.getLastUpdatedDate());
         return vendor;

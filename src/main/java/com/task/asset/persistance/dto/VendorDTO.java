@@ -1,6 +1,6 @@
 package com.task.asset.persistance.dto;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -43,7 +43,7 @@ public class VendorDTO {
     @Size(min = 0, max = 400, message = "Notes can be null or must be of 400 characters")
     String notes;
 
-    Status status;
+    EnumStatus status;
 
     int createdBy;
 

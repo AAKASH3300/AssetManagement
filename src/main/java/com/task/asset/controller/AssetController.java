@@ -3,6 +3,7 @@ package com.task.asset.controller;
 import com.task.asset.exception.CommonException;
 import com.task.asset.exception.NoDataPresentException;
 import com.task.asset.persistance.*;
+import com.task.asset.persistance.dto.*;
 import com.task.asset.service.AssetService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,15 @@ public class AssetController {
     public Object createAsset(@PathVariable String category, @RequestBody Object asset) {
         switch (category) {
             case "electronics":
-                return assetService.createElectronics((Electronics) asset);
+                return assetService.createElectronics((ElectronicsDTO) asset);
             case "furnitures":
-                return assetService.createFurnitures((Furnitures) asset);
+                return assetService.createFurnitures((FurnituresDTO) asset);
             case "consumables":
-                return assetService.createConsumables((Consumables) asset);
+                return assetService.createConsumables((ConsumablesDTO) asset);
             case "accessories":
-                return assetService.createAccessories((Accessories) asset);
+                return assetService.createAccessories((AccessoriesDTO) asset);
             case "license":
-                return assetService.createLicense((License) asset);
+                return assetService.createLicense((LicenseDTO) asset);
             default:
                 throw new IllegalArgumentException("Invalid category: " + category);
         }

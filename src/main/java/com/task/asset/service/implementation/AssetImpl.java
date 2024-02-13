@@ -1,16 +1,33 @@
 package com.task.asset.service.implementation;
 
+import com.task.asset.exception.NoDataPresentException;
 import com.task.asset.persistance.*;
+import com.task.asset.persistance.conversion.*;
+import com.task.asset.persistance.dto.*;
 import com.task.asset.repository.*;
 import com.task.asset.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssetImpl implements AssetService {
 
+    @Autowired
+    EmployeeRepository employeeRepository;
+    @Autowired
+    ElectronicsMapper electronicsMapper;
+    @Autowired
+    FurnitureMapper furnitureMapper;
+    @Autowired
+    ConsumablesMapper consumablesMapper;
+    @Autowired
+    AccessoryMapper accessoryMapper;
+    @Autowired
+    LicenseMapper licenseMapper;
     @Autowired
     private ElectronicsRepository electronicsRepository;
     @Autowired
@@ -25,55 +42,115 @@ public class AssetImpl implements AssetService {
     //--------------------------Create--------------------------
 
     @Override
-    public Electronics createElectronics(Electronics electronics) {
-        return electronicsRepository.save(electronics);
+    public ElectronicsDTO createElectronics(ElectronicsDTO electronicModel) {
+        Employee employee = employeeRepository.findById(Integer.valueOf(electronicModel.getEmpId())).orElse(null);
+        Electronics electronics = electronicsMapper.ModelToEntity(electronicModel, employee);
+        electronicsRepository.save(electronics);
+        electronicModel = electronicsMapper.convertToModel(electronics);
+        return electronicModel;
     }
 
     @Override
-    public Furnitures createFurnitures(Furnitures furnitures) {
-        return furnitureRepository.save(furnitures);
+    public FurnituresDTO createFurnitures(FurnituresDTO furnitureModel) {
+        Furnitures furnitures = furnitureMapper.convertToEntity(furnitureModel);
+        furnitureRepository.save(furnitures);
+        return furnitureMapper.convertToModel(furnitures);
     }
 
     @Override
-    public Consumables createConsumables(Consumables consumables) {
-        return consumablesRepository.save(consumables);
+    public ConsumablesDTO createConsumables(ConsumablesDTO consumablesModel) {
+        Consumables consumables = consumablesMapper.convertToEntity(consumablesModel);
+        consumablesRepository.save(consumables);
+        consumablesModel = consumablesMapper.convertToModel(consumables);
+        return consumablesModel;
     }
 
     @Override
-    public Accessories createAccessories(Accessories accessories) {
-        return accessoriesRepository.save(accessories);
+    public AccessoriesDTO createAccessories(AccessoriesDTO accessoriesModel) {
+        Accessories accessories = accessoryMapper.convertToEntity(accessoriesModel);
+        accessoriesRepository.save(accessories);
+        accessoriesModel = accessoryMapper.convertToModel(accessories);
+        return accessoriesModel;
     }
 
     @Override
-    public License createLicense(License license) {
-        return licenseRepository.save(license);
+    public LicenseDTO createLicense(LicenseDTO licenseModel) {
+        License license = licenseMapper.convertToEntity(licenseModel);
+        licenseRepository.save(license);
+        licenseModel = licenseMapper.convertToModel(license);
+        return licenseModel;
     }
 
     //--------------------------List--------------------------
 
     @Override
-    public List<Electronics> getAllElectronics() {
-        return electronicsRepository.findAll();
+    public List<ElectronicsDTO> getAllElectronics() throws NoDataPresentException {
+        List<Electronics> electronics = electronicsRepository.findAll();
+
+        List<ElectronicsDTO> electronicsModel = new ArrayList<>();
+
+        if (electronics.isEmpty()) throw new NoDataPresentException("No Electronics records found ..");
+        for (Electronics electronic : electronics) {
+            electronicsModel.add(electronicsMapper.convertToModel(electronic));
+        }
+
+        return electronicsModel;
     }
 
     @Override
-    public List<Furnitures> getAllFurnitures() {
-        return furnitureRepository.findAll();
+    public List<FurnituresDTO> getAllFurnitures() throws NoDataPresentException {
+        List<Furnitures> furnitures = furnitureRepository.findAll();
+
+        List<FurnituresDTO> furnitureModel = new ArrayList<>();
+
+        if (furnitures.isEmpty()) throw new NoDataPresentException("No Furnitures records found ..");
+        for (Furnitures furniture : furnitures) {
+            furnitureModel.add(furnitureMapper.convertToModel(furniture));
+        }
+
+        return furnitureModel;
     }
 
     @Override
-    public List<Consumables> getAllConsumables() {
-        return consumablesRepository.findAll();
+    public List<ConsumablesDTO> getAllConsumables() throws NoDataPresentException {
+        List<Consumables> consumables = consumablesRepository.findAll();
+
+        List<ConsumablesDTO> consumablesDTO = new ArrayList<>();
+
+        if (consumables.isEmpty()) throw new NoDataPresentException("No Consumabels records found ..");
+        for (Consumables consumable : consumables) {
+            consumablesDTO.add(consumablesMapper.convertToModel(consumable));
+        }
+
+        return consumablesDTO;
     }
 
     @Override
-    public List<Accessories> getAllAccessories() {
-        return accessoriesRepository.findAll();
+    public List<AccessoriesDTO> getAllAccessories() throws NoDataPresentException {
+        List<Accessories> accessories = accessoriesRepository.findAll();
+
+        List<AccessoriesDTO> accessoriesDTO = new ArrayList<>();
+
+        if (accessories.isEmpty()) throw new NoDataPresentException("No Accessories records found ..");
+        for (Accessories accessory : accessories) {
+            accessoriesDTO.add(accessoryMapper.convertToModel(accessory));
+        }
+
+        return accessoriesDTO;
     }
 
     @Override
-    public List<License> getAllLicense() {
-        return licenseRepository.findAll();
+    public List<LicenseDTO> getAllLicense() throws NoDataPresentException {
+        List<License> license = licenseRepository.findAll();
+
+        List<LicenseDTO> licenseDTO = new ArrayList<>();
+
+        if (license.isEmpty()) throw new NoDataPresentException("No License records found ..");
+        for (License lic : license) {
+            licenseDTO.add(licenseMapper.convertToModel(lic));
+        }
+
+        return licenseDTO;
     }
 
     //--------------------------GetById--------------------------

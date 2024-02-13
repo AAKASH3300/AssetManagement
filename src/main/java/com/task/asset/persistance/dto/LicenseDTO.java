@@ -1,7 +1,7 @@
 package com.task.asset.persistance.dto;
 
-import com.task.asset.enums.Expiration;
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumExpiration;
+import com.task.asset.enums.EnumStatus;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -62,7 +62,7 @@ public class LicenseDTO {
     private Double purchaseCost;
 
     @Size(max = 10)
-    private Expiration expiration;
+    private EnumExpiration expiration;
 
     @PositiveOrZero
     private Integer expirationPeriod;
@@ -72,7 +72,7 @@ public class LicenseDTO {
 
     @NotBlank
     @Size(max = 10)
-    private Status status;
+    private EnumStatus status;
 
     @NotNull
     @Positive

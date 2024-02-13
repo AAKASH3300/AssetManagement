@@ -1,22 +1,28 @@
 package com.task.asset.persistance;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
-
+@Getter
+@Setter
+@Table(name="tbl_subcategory")
 public class SubCategory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @Column(name ="id")
+    private int id;
 
     @Column(name = "sub_category_name", length = 50)
     private String subCategoryName;
 
-    @Column(length = 10)
-    private Status status;
+    @Column(name="status",length = 10)
+    private EnumStatus status;
 
     @Column(name = "created_by")
     private Integer createdBy;

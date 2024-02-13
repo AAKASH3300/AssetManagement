@@ -1,9 +1,9 @@
 package com.task.asset.persistance;
 
 
-import com.task.asset.enums.Expiration;
-import com.task.asset.enums.Ownership;
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumExpiration;
+import com.task.asset.enums.EnumOwnership;
+import com.task.asset.enums.EnumStatus;
 import jakarta.persistence.Id;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Getter
@@ -27,8 +27,9 @@ public class Electronics {
     @Column(name = "ele_code", length = 20)
     private String eleCode;
 
-    @Column(name = "sub_category_id")
-    private Integer subCategoryId;
+//    @ManyToOne
+//    @JoinColumn(name = "sub_category_id", referencedColumnName = "id")
+//    private SubCategory subCategoryId;
 
     @Column(name = "ele_name", length = 50)
     private String eleName;
@@ -45,11 +46,13 @@ public class Electronics {
 //    @Column(name = "ele_image", length = 500)
 //    private String eleImage;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "ownership", length = 10)
-    private Ownership ownership;
+    private EnumOwnership Ownership;
 
-    @Column(name = "vendor_id")
-    private Integer vendorId;
+    @ManyToOne
+    @JoinColumn(name = "vendor_id", referencedColumnName = "id")
+    private Vendor vendorId;
 
     @Column(name = "purchase_date")
     private Date purchaseDate;
@@ -57,8 +60,9 @@ public class Electronics {
     @Column(name = "purchase_cost")
     private Double purchaseCost;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "warranty", length = 5)
-    private Expiration warranty;
+    private EnumExpiration warranty;
 
     @Column(name = "warranty_period")
     private Integer warrantyPeriod;
@@ -69,22 +73,28 @@ public class Electronics {
     @Column(name = "next_maintenance")
     private Date nextMaintenance;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 10)
-    private Status status;
+    private EnumStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "emp_id", referencedColumnName = "id")
+    private Employee empId;
 
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @Column(name = "last_updated_by")
-    private Integer lastUpdatedBy;
+    private String lastUpdatedBy;
 
     @Column(name = "created_date")
     @CreationTimestamp
-    private LocalDateTime createdDate;
+    private Timestamp createdDate;
 
     @Column(name = "last_updated_date")
     @UpdateTimestamp
-    private LocalDateTime lastUpdatedDate;
+    private Timestamp lastUpdatedDate;
+
 
 }
 

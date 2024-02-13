@@ -1,78 +1,57 @@
 package com.task.asset.persistance.dto;
 
-import com.task.asset.enums.Expiration;
-import com.task.asset.enums.Ownership;
-import com.task.asset.enums.Status;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-
-@Component
 @Data
 @Getter
 @Setter
 public class ElectronicsDTO {
 
+
     private Integer id;
 
-    @NotBlank(message = "Vendor code can not be empty ..")
-    @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "provide a valid vendor code")
     private String eleCode;
 
-    @NotBlank
-    private Integer subCategoryId;
+//    private String subCategoryId;
 
-    @NotBlank(message = "vendor name can not be empty ..")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "provide a valid vendor name")
     private String eleName;
 
-    @NotBlank
     private String eleBrand;
 
-    @Size(max = 50)
-    @NotBlank
     private String serialNo;
 
-    @Size(max = 500)
     private String eleDetails;
 
-    private Ownership ownership;
+//    private String eleImage;
 
-    @NotNull
-    private Integer vendorId;
+    private String ownership;
 
-    @NotNull
-    private Date purchaseDate;
+    private String vendorId;
 
-    @NotNull
-    @Positive
-    private Double purchaseCost;
+    private String purchaseDate;
 
-    private Expiration warranty;
+    private String purchaseCost;
 
-    @PositiveOrZero
-    private Integer warrantyPeriod;
+    private String warranty;
 
-    private Date lastMaintenance;
+    private String warrantyPeriod;
 
-    private Date nextMaintenance;
+    private String lastMaintenance;
 
-    private Status status;
+    private String nextMaintenance;
 
-    @NotNull
-    private Integer createdBy;
+    private String empId;
 
-    @NotNull
-    private Integer lastUpdatedBy;
+    private String status;
 
-    @NotNull
-    private LocalDateTime createdDate;
+    private String createdBy;
 
-    @NotNull
-    private LocalDateTime lastUpdatedDate;
+    private String lastUpdatedBy;
+
+    private String createdDate;
+
+    private String lastUpdatedDate;
+
 }

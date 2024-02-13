@@ -1,8 +1,8 @@
 package com.task.asset.persistance;
 
-import com.task.asset.enums.Expiration;
-import com.task.asset.enums.Ownership;
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumExpiration;
+import com.task.asset.enums.EnumOwnership;
+import com.task.asset.enums.EnumStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,7 +42,7 @@ public class Accessories {
 //    private String accImage;
 
     @Column(length = 10)
-    private Ownership ownership;
+    private EnumOwnership Ownership;
 
     @Column(name = "vendor_id")
     private Integer vendorId;
@@ -54,13 +54,13 @@ public class Accessories {
     private Double purchaseCost;
 
     @Column(length = 10)
-    private Expiration warranty;
+    private EnumExpiration warranty;
 
     @Column(name = "warranty_period")
     private Integer warrantyPeriod;
 
     @Column(length = 10)
-    private Status status;
+    private EnumStatus status;
 
     @Column(name = "created_by")
     private Integer createdBy;

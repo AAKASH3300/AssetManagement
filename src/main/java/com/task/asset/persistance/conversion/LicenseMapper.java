@@ -1,9 +1,11 @@
 package com.task.asset.persistance.conversion;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import com.task.asset.persistance.License;
 import com.task.asset.persistance.dto.LicenseDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LicenseMapper {
     public static License convertToEntity(LicenseDTO licenseModel) {
 
@@ -26,7 +28,7 @@ public class LicenseMapper {
         license.setExpirationAlert(licenseModel.getExpirationAlert());
         license.setCreatedDate(licenseModel.getCreatedDate());
         license.setLastUpdatedDate(licenseModel.getLastUpdatedDate());
-        license.setStatus(Status.valueOf(String.valueOf(Status.ACTIVE)));
+        license.setStatus(EnumStatus.valueOf(String.valueOf(EnumStatus.ACTIVE)));
         license.setCreatedDate(licenseModel.getCreatedDate());
         license.setLastUpdatedDate(licenseModel.getLastUpdatedDate());
         return license;
@@ -49,7 +51,7 @@ public class LicenseMapper {
         licenseDTO.setExpiration(license.getExpiration());
         licenseDTO.setExpirationPeriod(license.getExpirationPeriod());
         licenseDTO.setExpirationAlert(license.getExpirationAlert());
-        licenseDTO.setStatus(Status.valueOf(String.valueOf(license.getStatus())));
+        licenseDTO.setStatus(EnumStatus.valueOf(String.valueOf(license.getStatus())));
         licenseDTO.setCreatedBy(license.getCreatedBy());
         licenseDTO.setLastUpdatedBy(license.getLastUpdatedBy());
         licenseDTO.setCreatedDate(license.getCreatedDate());

@@ -1,6 +1,6 @@
 package com.task.asset.persistance;
 
-import com.task.asset.enums.Status;
+import com.task.asset.enums.EnumStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -49,7 +49,7 @@ public class Furnitures {
     private Double purchaseQty;
 
     @Column(length = 10)
-    private Status status;
+    private EnumStatus status;
 
     @Column(name = "created_by")
     private Integer createdBy;
